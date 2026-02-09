@@ -33,6 +33,11 @@ class RegistrationForm(forms.Form):
 		return cleaned_data
 
 class LoginForm(forms.Form):
-
 	username = forms.CharField()
 	password = forms.CharField()
+
+
+class ConversionForm(forms.Form):
+    from_currency = forms.CharField(max_length=3)
+    to_currency = forms.CharField(max_length=3)
+    amount = forms.DecimalField(min_value=0.01)
