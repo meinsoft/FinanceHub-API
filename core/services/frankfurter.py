@@ -38,4 +38,4 @@ class FrankfurterService:
 			return 'An error occurred while sending the request'
 
 
-print(FrankfurterService.get_latest_rates('USD','EUR')['rates']['EUR'])
+#print(FrankfurterService.get_latest_rates('USD','EUR')['rates']['EUR'])

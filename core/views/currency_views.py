@@ -127,8 +127,8 @@ class WatchListView(View):
 			return JsonResponse({
 				"id": watchlist.id,
 				"base_currency": watchlist.base_currency,
-				"target_currency": watchlist.target_currency
-			}, status=201)
+				"target_currency":watchlist.target_currency,
+			},status=201)
 		except IntegrityError:
 			return JsonResponse({"success": False, "error": "Already in watchlist"}, status=400)
 

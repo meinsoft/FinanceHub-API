@@ -41,3 +41,16 @@ class ConversionForm(forms.Form):
     from_currency = forms.CharField(max_length=3)
     to_currency = forms.CharField(max_length=3)
     amount = forms.DecimalField(min_value=0.01)
+
+
+
+class PortfolioForm(forms.Form):
+	currency_code = forms.CharField(min_length=3,max_length=3)
+	amount = forms.DecimalField(min_value=0.01)
+	purchase_rate = forms.DecimalField(min_value=0.000001)
+	notes = forms.CharField(required=False,max_length=500)
+
+	def clean_currency_code(self):
+		currency_code = self.cleaned_data['currency_code']
+		return currency_code.upper()
+		

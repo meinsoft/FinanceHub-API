@@ -1,4 +1,4 @@
-from .views import auth_views,currency_views
+from .views import auth_views,currency_views,portfolio_views
 from django.urls import path
 
 
@@ -13,6 +13,11 @@ urlpatterns = [
 	path('currency/history/',currency_views.ConversionHistoryView.as_view()),
 	path('currency/currencies/',currency_views.SupportedCurrenciesView.as_view()),
 	path('currency/watchlist/',currency_views.WatchListView.as_view()),
-	path('currency/watchlist/<int:pk>/', currency_views.WatchListDeleteView.as_view())
+	path('currency/watchlist/<int:pk>/', currency_views.WatchListDeleteView.as_view()),
+
+
+	path('portfolio/',portfolio_views.PortfolioListCreateView.as_view()),
+	path('portfolio/<int:pk>/',portfolio_views.PortfolioDetailView.as_view()),
+
 
 ]
