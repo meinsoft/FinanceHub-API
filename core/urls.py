@@ -17,7 +17,7 @@ urlpatterns = [
 
 
 	path('portfolio/',portfolio_views.PortfolioListCreateView.as_view()),
+	path('portfolio/summary/',portfolio_views.SummaryView.as_view()),
 	path('portfolio/<int:pk>/',portfolio_views.PortfolioDetailView.as_view()),
-
 
 ]

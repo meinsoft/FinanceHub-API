@@ -122,3 +122,33 @@ class PortfolioDetailView(View):
 			return JsonResponse({"success": False, "error": "Not found"}, status=404)
 		portfolio.delete()
 		return JsonResponse({"success": True, "response": "Deleted"})
+
+
+class SummaryView(View):
+
+	@method_decorator(api_login_required)
+	def get(self,request):
+		portfolio = Portfolio.objects.filter(user=request.user)
+		preferred = request.user.profile.preferred_currency
+
+		array = []
+		count = 0
+		for i in portfolio:
+			data = FrankfurterService.get_latest_rates(i.currency_code, preferred)
+			current_rate = data['rates'][preferred]
+			value = float(i.amount)*current_rate
+			array.append({
+                "currency_code": i.currency_code,
+                "amount": float(i.amount),
+                "current_rate": current_rate,
+                "value_in_base": round(value,2)
+             })
+			count+=value
+
+		return JsonResponse({
+		    "total_value": round(count,2),
+		    "currency": preferred,
+		    "items": array
+		})
+
+
